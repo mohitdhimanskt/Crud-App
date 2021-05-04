@@ -9,18 +9,25 @@ const uri =
 const client = new MongoClient(uri, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
-});
+})
 client.connect((err) => {
-  const collection = client.db("star-wars-quotes").collection("devices")
-  const quotesCollection = db.collection('quotes')
+  const collection = client.db("star-wars-quotes").collection("devices");
+  const quotesCollection = db.collection("quotes");
   app.use(/* ... */);
   app.get(/* ... */);
   app.post(/* ... */);
   app.listen(/* ... */);
   // perform actions on the collection object
   client.close();
+})
+app.post("/quotes", (req, res) => {
+  quotesCollection
+    .insertOne(req.body)
+    .then((result) => {
+      console.log(result);
+    })
+    .catch((error) => console.error(error));
 });
-
 // Make sure you place body-parser before your CRUD handlers!
 app.use(bodyParser.urlencoded({ extended: true }));
 
