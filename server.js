@@ -20,14 +20,13 @@ client.connect((err) => {
   // // perform actions on the collection object
   // client.close();
   // })
-  app.post("/quotes", (req, res) => {
-    quotesCollection
-      .insertOne(req.body)
-      .then((result) => {
-        console.log(result);
+  app.post('/quotes', (req, res) => {
+    quotesCollection.insertOne(req.body)
+      .then(result => {
+        res.redirect('/')
       })
-      .catch((error) => console.error(error));
-  });
+      .catch(error => console.error(error))
+  })
 });
 // Make sure you place body-parser before your CRUD handlers!
 app.use(bodyParser.urlencoded({ extended: true }));
