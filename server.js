@@ -13,6 +13,8 @@ const client = new MongoClient(uri, {
 client.connect((err) => {
   const db = client.db("star-wars-quotes");
   const quotesCollection = db.collection("quotes");
+
+  app.set("view engine", "ejs");
   // app.use(/* ... */);
   // app.get(/* ... */);
   // app.post(/* ... */);
@@ -27,9 +29,9 @@ client.connect((err) => {
       .then((results) => {
         console.log(results);
       })
-      .catch(/* ... */)
+      .catch(/* ... */);
     // ...
-    });
+  });
   app.post("/quotes", (req, res) => {
     quotesCollection
       .insertOne(req.body)
@@ -38,7 +40,6 @@ client.connect((err) => {
       })
       .catch((error) => console.error(error));
   });
-
 });
 // Make sure you place body-parser before your CRUD handlers!
 app.use(bodyParser.urlencoded({ extended: true }));
