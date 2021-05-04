@@ -1,13 +1,25 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-const MongoClient = require('mongodb').MongoClient
+// const MongoClient = require('mongodb').MongoClient
 const app = express();
 
-MongoClient.connect(connectionString, { useUnifiedTopology: true })
-  .then(client => {
-    console.log('Connected to Database')
-    const db = client.db('star-wars-quotes')
-  })
+const MongoClient = require("mongodb").MongoClient;
+const uri =
+  "mongodb+srv://mohit:<password>@cluster0.rsuak.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+const client = new MongoClient(uri, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
+client.connect((err) => {
+  const collection = client.db("star-wars-quotes").collection("devices");
+  app.use(/* ... */);
+  app.get(/* ... */);
+  app.post(/* ... */);
+  app.listen(/* ... */);
+  // perform actions on the collection object
+  client.close();
+});
+
 // Make sure you place body-parser before your CRUD handlers!
 app.use(bodyParser.urlencoded({ extended: true }));
 
