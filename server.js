@@ -3,9 +3,11 @@ const bodyParser = require("body-parser");
 const MongoClient = require('mongodb').MongoClient
 const app = express();
 
-MongoClient.connect('mongodb-connection-string', (err, client) => {
-  // ... do something here
-})
+MongoClient.connect(connectionString, { useUnifiedTopology: true })
+  .then(client => {
+    console.log('Connected to Database')
+    const db = client.db('star-wars-quotes')
+  })
 // Make sure you place body-parser before your CRUD handlers!
 app.use(bodyParser.urlencoded({ extended: true }));
 
