@@ -20,6 +20,16 @@ client.connect((err) => {
   // // perform actions on the collection object
   // client.close();
   // })
+  app.get("/", (req, res) => {
+    db.collection("quotes")
+      .find()
+      .toArray()
+      .then((results) => {
+        console.log(results);
+      })
+      .catch(/* ... */)
+    // ...
+    });
   app.post("/quotes", (req, res) => {
     quotesCollection
       .insertOne(req.body)
@@ -28,11 +38,7 @@ client.connect((err) => {
       })
       .catch((error) => console.error(error));
   });
-  app.get("/", (req, res) => {
-    const cursor = db.collection("quotes").find();
-    console.log(cursor);
-    // ...
-  });
+
 });
 // Make sure you place body-parser before your CRUD handlers!
 app.use(bodyParser.urlencoded({ extended: true }));
