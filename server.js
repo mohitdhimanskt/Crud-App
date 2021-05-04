@@ -11,7 +11,8 @@ const client = new MongoClient(uri, {
   useUnifiedTopology: true,
 });
 client.connect((err) => {
-  const collection = client.db("star-wars-quotes").collection("devices");
+  const collection = client.db("star-wars-quotes").collection("devices")
+  const quotesCollection = db.collection('quotes')
   app.use(/* ... */);
   app.get(/* ... */);
   app.post(/* ... */);
