@@ -22,15 +22,33 @@ client.connect((err) => {
   // // perform actions on the collection object
   // client.close();
   // })
+  // app.get("/", (req, res) => {
+  //   db.collection("quotes")
+  //     .find()
+  //     .toArray()
+  //     .then((results) => {
+  //       console.log(results);
+  //     })
+  //     .catch(/* ... */);
+  //   // ...
+  // });
+  // app.get("/", (req, res) => {
+  //   db.collection("quotes")
+  //     .find()
+  //     .toArray()
+  //     .then(/* ... */)
+  //     .catch(/* ... */);
+  //   res.render("index.ejs", {});
+  // });
+
   app.get("/", (req, res) => {
     db.collection("quotes")
       .find()
       .toArray()
       .then((results) => {
-        console.log(results);
+        res.render("index.ejs", { quotes: results });
       })
       .catch(/* ... */);
-    // ...
   });
   app.post("/quotes", (req, res) => {
     quotesCollection
