@@ -60,7 +60,21 @@ client.connect((err) => {
       .catch((error) => console.error(error));
   });
   app.put("/quotes", (req, res) => {
-    console.log(req.body);
+    quotesCollection
+      .findOneAndUpdate(
+        { name: "Yoda" },
+        {
+          $set: {
+            name: req.body.name,
+            quote: req.body.quote,
+          },
+        },
+        {
+          upsert: true,
+        }
+      )
+      .then((result) => res.json("Success"))
+      .catch((error) => console.error(error));
   });
 });
 // Make sure you place body-parser before your CRUD handlers!
