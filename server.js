@@ -15,6 +15,7 @@ client.connect((err) => {
   const quotesCollection = db.collection("quotes");
 
   app.set("view engine", "ejs");
+  app.use(bodyParser.json())
   // app.use(/* ... */);
   // app.get(/* ... */);
   // app.post(/* ... */);
