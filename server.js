@@ -15,7 +15,7 @@ client.connect((err) => {
   const quotesCollection = db.collection("quotes");
 
   app.set("view engine", "ejs");
-  app.use(bodyParser.json())
+  app.use(bodyParser.json());
   // app.use(/* ... */);
   // app.get(/* ... */);
   // app.post(/* ... */);
@@ -59,6 +59,9 @@ client.connect((err) => {
       })
       .catch((error) => console.error(error));
   });
+  app.put("/quotes", (req, res) => {
+    console.log(req.body);
+  });
 });
 // Make sure you place body-parser before your CRUD handlers!
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -76,9 +79,7 @@ app.get("/", (req, res) => {
   // Note: __dirname is the current directory you're in. Try logging it and see what you get!
   // Mine was '/Users/zellwk/Projects/demo-repos/crud-express-mongo' for this app.
 });
-app.post("/quotes", (req, res) => {
-  console.log(req.body);
-});
+
 app.listen(3000, function() {
   console.log("listening on 3000");
 });
