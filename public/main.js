@@ -1,6 +1,7 @@
 app.use(express.static("public"));
 const update = document.querySelector("#update-button");
 const deleteButton = document.querySelector("#delete-button");
+const messageDiv = document.querySelector('#message')
 
 update.addEventListener("click", (_) => {
   // Send PUT Request here
