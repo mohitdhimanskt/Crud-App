@@ -76,19 +76,18 @@ client.connect((err) => {
       .then((result) => res.json("Success"))
       .catch((error) => console.error(error));
   });
-  
-    app.delete('/quotes', (req, res) => {
-      quotesCollection.deleteOne(
-        { name: req.body.name }
-      )
-        .then(result => {
-          if (result.deletedCount === 0) {
-            return res.json('No quote to delete')
-          }
-          res.json('Deleted Darth Vadar\'s quote')
-        })
-        .catch(error => console.error(error))
-    })
+
+  app.delete("/quotes", (req, res) => {
+    quotesCollection
+      .deleteOne({ name: req.body.name })
+      .then((result) => {
+        if (result.deletedCount === 0) {
+          return res.json("No quote to delete");
+        }
+        res.json("Deleted Darth Vadar's quote");
+      })
+      .catch((error) => console.error(error));
+  });
 });
 // Make sure you place body-parser before your CRUD handlers!
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -98,14 +97,14 @@ app.use(bodyParser.urlencoded({ extended: true }));
 //     // do something here
 //   })
 
-//   app.get('/', (req, res) => {
-//     res.send('Hello World')
-//   })
-app.get("/", (req, res) => {
-  res.sendFile(__dirname + "/index.html");
-  // Note: __dirname is the current directory you're in. Try logging it and see what you get!
-  // Mine was '/Users/zellwk/Projects/demo-repos/crud-express-mongo' for this app.
-});
+// app.get('/', (req, res) => {
+//   res.send('Hello World')
+// })
+// app.get("/", (req, res) => {
+//   res.sendFile(__dirname + "/index.html");
+//   // Note: __dirname is the current directory you're in. Try logging it and see what you get!
+//   // Mine was '/Users/zellwk/Projects/demo-repos/crud-express-mongo' for this app.
+// });
 
 app.listen(3000, function() {
   console.log("listening on 3000");
